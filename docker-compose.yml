@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  tests:
+    image: buildkite/plugin-tester
+    volumes:
+      - ".:/plugin:ro"
+  lint:
+    image: buildkite/plugin-linter
+    command: ['--id', 'life360/repo-shallow-clone']
+    volumes:
+      - ".:/plugin:ro"
+  shellcheck:
+    image: koalaman/shellcheck-alpine:latest
+    working_dir: "/plugin"
+    command: ["shellcheck", "hooks/pre-checkout"]
+    volumes:
+      - ".:/plugin"

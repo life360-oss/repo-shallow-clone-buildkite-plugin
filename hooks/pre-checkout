@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Check for the value of the `run_on_pull_requests` property
+if [ -z "${BUILDKITE_PLUGIN_REPO_SHALLOW_CLONE_RUN_ON_PULL_REQUESTS:-}" ]; then
+  echo "+++ repo shallow clone plugin error"
+  echo "The property `run_on_pull_requests` is not configured."
+  exit 1
+fi
+
+# The depth to set, by default 1
+DEPTH="${BUILDKITE_PLUGIN_REPO_SHALLOW_CLONE_DEPTH:-1}"
+
+if [[ "${BUILDKITE_PLUGIN_REPO_SHALLOW_CLONE_RUN_ON_PULL_REQUESTS}" = false ]] ; then
+    # Check if the job is being triggered as part of a pull request
+    if [[ "${BUILDKITE_PULL_REQUEST}" = false ]]; then
+        echo "Correctly set the values of the git clone flags to -v --depth ${DEPTH}"
+        export BUILDKITE_GIT_CLONE_FLAGS="-v --depth ${DEPTH}"
+    fi
+else
+    echo "Correctly set the values of the git clone flags to -v --depth ${DEPTH}"
+    export BUILDKITE_GIT_CLONE_FLAGS="-v --depth ${DEPTH}"
+fi
+
+
+

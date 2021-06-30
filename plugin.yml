@@ -1,0 +1,12 @@
+name: Repo Shallow Clone
+description: Sets git-clone and git-fetch flags to perform a shallow clone during the checkout process
+author: https://github.com/Vkt0r
+requirements: ['git']
+configuration:
+  properties:
+    depth:
+      type: number
+    run_on_pull_requests:
+      type: boolean
+
+additionalProperties: false
