@@ -20,9 +20,9 @@ steps:
 
 The depth to execute the shallow clone. (`default = 1`).
 
-### `run_on_pull_requests` (Required, array)
+### `run_on_pull_requests` (Required, boolean)
 
-Defines if the rule to execute shallow clone should be applied to pull requests as well.
+Defines if the rule to execute a shallow clone should be applied to pull requests as well.
 
 ## Developing
 
