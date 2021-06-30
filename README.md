@@ -11,7 +11,7 @@ steps:
     plugins:
       - life360/repo-shallow-clone#v1.0.0:
           depth: 1
-          branches: ['main', 'develop']
+          run_on_pull_requests: false
 ```
 
 ## Configuration
